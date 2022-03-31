@@ -28,13 +28,13 @@
 
 // console.log(getUserPasswordLength(prompt("Invalid Input, Try a number between 8 - 128")));
 
-var allUpperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";     // 26
-var allLowerCaseLetters = "abcdefghijklmnopqrstuvwxyz"; // 26
+var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";     // 26
+var lower = "abcdefghijklmnopqrstuvwxyz"; // 26
 var numbers = "0123456789";                             // 10
 var symbols = "!#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\"";     // 32
 
 // Variables determined by the user
-var userPassLength = 0;     // Default to 0
+var passLength = 0;     // Default to 0
 
 var includeSymbols = false;
 var includeNumbers = false;
@@ -46,7 +46,8 @@ function getUserPasswordLength() {
     var input = prompt("Enter a number between 8 - 128 to be generated");
     if (input >= 8 && input <= 128) {
         console.log("Valid: " + input);
-        userPassLength = input;
+        passLength = input;
+        document.getElementById("pass-length").innerHTML = "Password Length: " + input;
         return;
     }
     console.log("Invalid: " + input);
@@ -79,14 +80,25 @@ function getUserPassPreference() {
         includeLower = true;
         lowerCaseCheck = "✅";
     }
-    alert("Your preferences are:\nSymbols: " + symbolsCheck + ". Numbers: " + numbersCheck + ". Uppercase: " +  upperCaseCheck + ". Lowercase: " + lowerCaseCheck);
+    console.log("Symbol: " + includeSymbols);
+    console.log("Numbers: " + includeNumbers);
+    console.log("Uppercase: " + includeUpper);
+    console.log("Lowercase: " + includeLower);
+
+    document.getElementById("pref").innerHTML = "Your preferences are:\nSymbols: " + symbolsCheck + " Numbers: " + numbersCheck + " Uppercase: " +  upperCaseCheck + " Lowercase: " + lowerCaseCheck;
+    alert("Your preferences are:\nSymbols: " + symbolsCheck + " Numbers: " + numbersCheck + " Uppercase: " +  upperCaseCheck + " Lowercase: " + lowerCaseCheck);
 }
 
-getUserPassPreference();
+function generatePassword() {
+    // if include symbols, num, upper, lower are enabled, 25% of each.
+    // 1/3 of each if 1 isnt selected
+    // 1/2 of each if 2 isnt selected
+    // Take userPassLength, then divide into equal parts depending on preferences
+    
+    // Algorithm: Take of upper and use: upperLetters[] and upper.length
+    // math.random 0 - upper.length and parse the quantity into the divided amount.
+    
+}
 
-console.log("Symbol: " + includeSymbols);
-console.log("Numbers: " + includeNumbers);
-console.log("Uppercase: " + includeUpper);
-console.log("Lowercase: " + includeLower);
-
-// getUserPasswordLength();    // Stores user input in global variable
+getUserPassPreference();    // Get user password preference and store them into global variables
+getUserPasswordLength();    // Stores user input in global variable
