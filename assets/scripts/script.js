@@ -28,7 +28,6 @@
 
 // console.log(getUserPasswordLength(prompt("Invalid Input, Try a number between 8 - 128")));
 
-
 var allUpperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";     // 26
 var allLowerCaseLetters = "abcdefghijklmnopqrstuvwxyz"; // 26
 var numbers = "0123456789";                             // 10
@@ -55,4 +54,39 @@ function getUserPasswordLength() {
     getUserPasswordLength();
 }
 
-getUserPasswordLength();    // Stores user input in global variable
+function getUserPassPreference() {
+    var input = prompt("Enter your Password preferences!\nType in one string, 'SNUL' or 'NSLU' will include all\nInclude Symbols? 'S' \nInclude Numbers? 'N' \nInclude Uppercase Letters? 'U' \nInclude Lowercase Letters? 'L'");
+    input = input.toUpperCase(); // make input uppercase incase they type lowercase
+
+    var symbolsCheck = "🚫";
+    var numbersCheck = "🚫";
+    var upperCaseCheck = "🚫";
+    var lowerCaseCheck = "🚫";
+
+    if (input.includes('S')) {
+        includeSymbols = true;
+        symbolsCheck = "✅";
+    }
+    if (input.includes('N')) {
+        includeNumbers = true;
+        numbersCheck = "✅";
+    }
+    if (input.includes('U')) {
+        includeUpper = true;
+        upperCaseCheck = "✅";
+    }
+    if (input.includes('L')) {
+        includeLower = true;
+        lowerCaseCheck = "✅";
+    }
+    alert("Your preferences are:\nSymbols: " + symbolsCheck + ". Numbers: " + numbersCheck + ". Uppercase: " +  upperCaseCheck + ". Lowercase: " + lowerCaseCheck);
+}
+
+getUserPassPreference();
+
+console.log("Symbol: " + includeSymbols);
+console.log("Numbers: " + includeNumbers);
+console.log("Uppercase: " + includeUpper);
+console.log("Lowercase: " + includeLower);
+
+// getUserPasswordLength();    // Stores user input in global variable

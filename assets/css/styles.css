@@ -39,6 +39,10 @@ button {
     border-width: 2px;
 }
 
+::selection {
+    background-color: rgb(33, 92, 44);
+}
+
 @media screen and (max-width: 800px) {
     body {
         width: 100%;
