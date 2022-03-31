@@ -1,0 +1,10 @@
+html {
+    color: rgb(27, 189, 27);
+    background-color: black;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+header {
+    border: solid rgb(27, 189, 27);
+    text-align: center;
+}
