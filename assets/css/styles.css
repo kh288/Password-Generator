@@ -16,7 +16,7 @@ body {
     flex-direction: column;
 }
 
-header, section{
+header, section, #output{
     margin: 1em;
     padding: 1em;
     border: solid rgb(27, 189, 27);
@@ -39,8 +39,19 @@ button {
     border-width: 2px;
 }
 
+.generate:hover {
+    border-color: rgb(0, 255, 0);
+    color: rgb(0, 255, 0);
+    box-shadow: 0 0 .5em rgb(0, 255, 0);
+    transition: all .15s ease-in-out;
+}
+
 ::selection {
     background-color: rgb(33, 92, 44);
+}
+
+#output::selection {
+    user-select: all;
 }
 
 @media screen and (max-width: 800px) {

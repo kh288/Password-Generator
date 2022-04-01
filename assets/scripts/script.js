@@ -28,10 +28,16 @@
 
 // console.log(getUserPasswordLength(prompt("Invalid Input, Try a number between 8 - 128")));
 
-var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";     // 26
-var lower = "abcdefghijklmnopqrstuvwxyz"; // 26
-var numbers = "0123456789";                             // 10
-var symbols = "!#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\"";     // 32
+var buttonEL = document.querySelector("#generate");
+
+// Quantity of each character type: 
+var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";//------------26.  0 - 26 
+var lower = "abcdefghijklmnopqrstuvwxyz";//------------26. 27 - 52
+var numbers = "0123456789"; //-------------------------10. 53 - 63
+var symbols = "!#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\""; //-32. 64 - 95
+
+// reference each "section" instead by their array locations, upper: 0 - 26. lower: 27 - 52. numbers, 53 - 63. Symbols: 64 - 95.
+var passCharArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\""
 
 // Variables determined by the user
 var passLength = 0;     // Default to 0
@@ -87,9 +93,26 @@ function getUserPassPreference() {
 
     document.getElementById("pref").innerHTML = "Your preferences are:\nSymbols: " + symbolsCheck + " Numbers: " + numbersCheck + " Uppercase: " +  upperCaseCheck + " Lowercase: " + lowerCaseCheck;
     alert("Your preferences are:\nSymbols: " + symbolsCheck + " Numbers: " + numbersCheck + " Uppercase: " +  upperCaseCheck + " Lowercase: " + lowerCaseCheck);
+
+    if (symbolsCheck === "🚫" &&
+        upperCaseCheck === "🚫" &&
+        lowerCaseCheck === "🚫" &&
+        numbersCheck === "🚫") {
+        alert("Can't generate password with no character types selected, try again");
+        getUserPassPreference();
+    }
 }
 
-function generatePassword() {
+// Take a password length, and character set, then spit out a random string of that password type;
+function generateAlg(length, passtype) {
+    var password = "";
+    for (var i = 0; i < length; i++) {
+        password += passtype[Math.floor(Math.random() * (passtype.length))];
+    }
+    return password;
+}
+
+function generatePassword(event) {
     // if include symbols, num, upper, lower are enabled, 25% of each.
     // 1/3 of each if 1 isnt selected
     // 1/2 of each if 2 isnt selected
@@ -97,8 +120,40 @@ function generatePassword() {
     
     // Algorithm: Take of upper and use: upperLetters[] and upper.length
     // math.random 0 - upper.length and parse the quantity into the divided amount.
+    // var stringSelector = Math.floor(Math.random() * passLength); // can utilize this to randomly choose a selection between each string
     
+    // for (var i = 0; i < passLength; i++) {
+    //     password += upper[Math.floor(Math.random() * (upper.length))];
+    // }
+    // password.random;
+    // return password;
+    
+    // upper: 0 - 26. lower: 27 - 52. numbers, 53 - 63. Symbols: 64 - 95.
+
+    getUserPassPreference();    // Get user password preference and store them into global variables
+    getUserPasswordLength();
+    // event.preventDefault();
+    var password = "";
+
+    for (i = 0; i < passLength; i++) {
+        password += temp[Math.floor(Math.random() * (temp.length))];
+    }
+
+    
+    if (includeUpper && includeLower && includeNumbers && includeSymbols) {
+        var temp = upper + lower + numbers + symbols;
+        for (var i = 0; i < passLength; i++) {
+            password += temp[Math.floor(Math.random() * (temp.length))];
+        }
+        document.getElementById("output").innerText = password;
+    }
+
+    if (includeLower) {
+        console.log("Include Lower case true");
+    }
+
 }
 
-getUserPassPreference();    // Get user password preference and store them into global variables
-getUserPasswordLength();    // Stores user input in global variable
+   // Stores user input in global variable
+
+buttonEL.addEventListener("click", generatePassword);
