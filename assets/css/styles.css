@@ -43,9 +43,8 @@ button {
     padding: 1em;
 }
 
-#output {
-    display: flex;
-    flex-wrap: wrap;
+p {
+    word-break: break-word;
 }
 
 #generate:hover {

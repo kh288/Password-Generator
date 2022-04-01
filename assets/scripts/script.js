@@ -8,25 +8,6 @@
 
 // Could put ALL of the symbols, letters, numbers, in 1 big string, and random number generate a variable[x] to find each one that will be randomly selected
 
-// console.log("Upper case Character Lengh: " + allUpperLetters.length);
-// console.log("Lower case Character Lengh: " + allLowerCaseLetters.length);
-// console.log("Number Character Lengh: " + numbers.length);
-// console.log("Symbols Character Lengh: " + symbols.length);
-
-// console.log("Total number of Password character combinations: " + (allLowerCaseLetters.length + allLowerCaseLetters.length + numbers.length + symbols.length));
-// console.log("List of all Characters: " + allLowerCaseLetters + allUpperLetters + numbers + symbols);
-
-// Would like to get this version to work instead
-// function getUserPasswordLength(input) {
-//     if (input >= 8 && input <= 128) {
-//         return input;
-//     } else {
-//         getUserPasswordLength(prompt("Invalid Input, Try a number between 8 - 128"));
-//     }
-// }
-
-// console.log(getUserPasswordLength(prompt("Invalid Input, Try a number between 8 - 128")));
-
 var buttonEL = document.querySelector("#generate");
 
 // Quantity of each character type: 
@@ -34,9 +15,6 @@ var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";//------------26.  0 - 26
 var lower = "abcdefghijklmnopqrstuvwxyz";//------------26. 27 - 52
 var numbers = "0123456789"; //-------------------------10. 53 - 63
 var symbols = "!#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\""; //-32. 64 - 95
-
-// reference each "section" instead by their array locations, upper: 0 - 26. lower: 27 - 52. numbers, 53 - 63. Symbols: 64 - 95.
-// var passCharArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&'\(\)*+,-./:;\<=\>?@[\\]^_`\{|\}~\""
 
 // Variables determined by the user
 var passLength = 0;     // Default to 0
@@ -111,7 +89,7 @@ function generateAlg(length, passtype) {
     return password;
 }
         
-// Who woulda thought scrambling text would be such a big deal
+// takes input, and returns scrambled result
 function scramble(input) {
     var scrambled = '', rand;
 
@@ -145,9 +123,9 @@ function generatePassword(event) {
     includeUpper   = false;
     includeLower   = false;
 
-    getUserPassPreference();    // Get user password preference and store them into global variables
+    getUserPassPreference(); // Get user password preference and store them into global variables
     getUserPasswordLength();
-    // event.preventDefault();
+    event.preventDefault();
     
     // Check which preferences they have and generate accordingly.
 
@@ -214,6 +192,7 @@ function generatePassword(event) {
         password = scramble(password);
         console.log(password);
         document.getElementById("output").innerHTML = password;
+        return;
     }
     if (includeLower && includeSymbols) {
         password += generateAlg((passLength / 2), lower);
@@ -222,6 +201,7 @@ function generatePassword(event) {
         password = scramble(password);
         console.log(password);
         document.getElementById("output").innerHTML = password;
+        return;
     }
     if (includeLower && includeNumbers) {
         password += generateAlg((passLength / 2), lower);
@@ -230,6 +210,7 @@ function generatePassword(event) {
         password = scramble(password);
         console.log(password);
         document.getElementById("output").innerHTML = password;
+        return;
     }
     if (includeUpper && includeNumbers) {
         password += generateAlg((passLength / 2), upper);
@@ -238,6 +219,7 @@ function generatePassword(event) {
         password = scramble(password);
         console.log(password);
         document.getElementById("output").innerHTML = password;
+        return;
     }
     if (includeUpper && includeSymbols) {
         password += generateAlg((passLength / 2), upper);
@@ -246,6 +228,7 @@ function generatePassword(event) {
         password = scramble(password);
         console.log(password);
         document.getElementById("output").innerHTML = password;
+        return;
     }
     if (includeNumbers && includeSymbols) {
         password += generateAlg((passLength / 2), numbers);
@@ -254,6 +237,7 @@ function generatePassword(event) {
         password = scramble(password);
         console.log(password);
         document.getElementById("output").innerHTML = password;
+        return;
     }
 
     // whole strings
@@ -263,6 +247,7 @@ function generatePassword(event) {
         password = scramble(password);
         console.log(password);
         document.getElementById("output").innerHTML = password;
+        return;
     }
     if (includeUpper) {
         password += generateAlg((passLength), upper);
@@ -270,6 +255,7 @@ function generatePassword(event) {
         password = scramble(password);
         console.log(password);
         document.getElementById("output").innerHTML = password;
+        return;
     }
     if (includeNumbers) {
         password += generateAlg((passLength), numbers);
@@ -277,6 +263,7 @@ function generatePassword(event) {
         password = scramble(password);
         console.log(password);
         document.getElementById("output").innerHTML = password;
+        return;
     }
     if (includeSymbols) {
         password += generateAlg((passLength), symbols);
@@ -284,8 +271,8 @@ function generatePassword(event) {
         password = scramble(password);
         console.log(password);
         document.getElementById("output").innerHTML = password;
+        return;
     }
 }
-   // Stores user input in global variable
 
 buttonEL.addEventListener("click", generatePassword);
