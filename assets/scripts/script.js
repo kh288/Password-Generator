@@ -145,27 +145,140 @@ function generatePassword(event) {
     var password = "";
     // Check which preferences they have and generate accordingly.
 
-    // Filter what type password to concatinate
-    console.log("Password Length divided: " + passLength / 4);
-
+    //includes all: 4ths
     if (includeLower && includeNumbers && includeSymbols && includeUpper) {
         password += generateAlg((passLength / 4), lower);
-        console.log(password);
         password += generateAlg((passLength / 4), numbers);
-        console.log(password);
         password += generateAlg((passLength / 4), symbols);
-        console.log(password);
         password += generateAlg((passLength / 4), upper);
-        console.log(password);
+        
         password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+        return;
     }
-    // console.log("Scramble attempt: " + Math.random(password));
 
-    document.getElementById("output").innerHTML = password
-    // console.log("Include Symbols: " + includeSymbols);
-    // console.log("Include Numbers: " + includeNumbers);
-    // console.log("Include Upper: " + includeUpper);
-    // console.log("Include Lower: " + includeLower);
+    // divided by 3rds
+    if (includeLower && includeNumbers && includeSymbols && includeUpper === false) {
+        password += generateAlg((passLength / 3), lower);
+        password += generateAlg((passLength / 3), numbers);
+        password += generateAlg((passLength / 3), symbols);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+        return;
+    }
+    if (includeLower && includeNumbers && includeSymbols === false && includeUpper) {
+        password += generateAlg((passLength / 3), lower);
+        password += generateAlg((passLength / 3), numbers);
+        password += generateAlg((passLength / 3), upper);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+        return;
+    }
+    if (includeLower && includeNumbers === false && includeSymbols && includeUpper) {
+        password += generateAlg((passLength / 3), lower);
+        password += generateAlg((passLength / 3), symbols);
+        password += generateAlg((passLength / 3), upper);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+        return;
+    }
+    if (includeLower === false && includeNumbers && includeSymbols && includeUpper) {
+        password += generateAlg((passLength / 3), numbers);
+        password += generateAlg((passLength / 3), symbols);
+        password += generateAlg((passLength / 3), upper);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+        return;
+    }
+
+    //divided by 2s
+    if (includeLower && includeUpper) {
+        password += generateAlg((passLength / 2), lower);
+        password += generateAlg((passLength / 2), upper);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+    }
+    if (includeLower && includeSymbols) {
+        password += generateAlg((passLength / 2), lower);
+        password += generateAlg((passLength / 2), symbols);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+    }
+    if (includeLower && includeNumbers) {
+        password += generateAlg((passLength / 2), lower);
+        password += generateAlg((passLength / 2), numbers);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+    }
+    if (includeUpper && includeNumbers) {
+        password += generateAlg((passLength / 2), upper);
+        password += generateAlg((passLength / 2), numbers);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+    }
+    if (includeUpper && includeSymbols) {
+        password += generateAlg((passLength / 2), upper);
+        password += generateAlg((passLength / 2), symbols);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+    }
+    if (includeNumbers && includeSymbols) {
+        password += generateAlg((passLength / 2), numbers);
+        password += generateAlg((passLength / 2), symbols);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+    }
+
+    // whole strings
+    if (includeLower) {
+        password += generateAlg((passLength), lower);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+    }
+    if (includeUpper) {
+        password += generateAlg((passLength), upper);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+    }
+    if (includeNumbers) {
+        password += generateAlg((passLength), numbers);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+    }
+    if (includeSymbols) {
+        password += generateAlg((passLength), symbols);
+
+        password = scramble(password);
+        console.log(password);
+        document.getElementById("output").innerHTML = password;
+    }
 }
 
    // Stores user input in global variable
