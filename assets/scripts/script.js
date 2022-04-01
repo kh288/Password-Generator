@@ -111,47 +111,61 @@ function generateAlg(length, passtype) {
     }
     return password;
 }
+        
+// Who woulda thought scrambling text would be such a big deal
+function scramble(input) {
+    var scrambled = '', rand;
+
+    while (input.length > 1) {
+        rand = Math.floor(Math.random() * input.length); 
+        scrambled += input.charAt(rand);
+
+        if (rand == 0) {
+            input = input.substr(rand + 1);
+        } else if (rand == (input.length - 1)) {
+            input = input.substring(0, input.length - 1);
+        } else {
+            input = input.substring(0, rand) + input.substring(rand + 1);
+        }
+    }
+    scrambled += input;
+    return scrambled;
+}
 
 function generatePassword(event) {
     // if include symbols, num, upper, lower are enabled, 25% of each.
     // 1/3 of each if 1 isnt selected
     // 1/2 of each if 2 isnt selected
     // Take userPassLength, then divide into equal parts depending on preferences
-    
-    // Algorithm: Take of upper and use: upperLetters[] and upper.length
-    // math.random 0 - upper.length and parse the quantity into the divided amount.
-    // var stringSelector = Math.floor(Math.random() * passLength); // can utilize this to randomly choose a selection between each string
-    
-    // for (var i = 0; i < passLength; i++) {
-    //     password += upper[Math.floor(Math.random() * (upper.length))];
-    // }
-    // password.random;
-    // return password;
-    
-    // upper: 0 - 26. lower: 27 - 52. numbers, 53 - 63. Symbols: 64 - 95.
 
     getUserPassPreference();    // Get user password preference and store them into global variables
     getUserPasswordLength();
     // event.preventDefault();
-    var password = "";
-
-    for (i = 0; i < passLength; i++) {
-        password += temp[Math.floor(Math.random() * (temp.length))];
-    }
-
     
-    if (includeUpper && includeLower && includeNumbers && includeSymbols) {
-        var temp = upper + lower + numbers + symbols;
-        for (var i = 0; i < passLength; i++) {
-            password += temp[Math.floor(Math.random() * (temp.length))];
-        }
-        document.getElementById("output").innerText = password;
-    }
+    var password = "";
+    // Check which preferences they have and generate accordingly.
 
-    if (includeLower) {
-        console.log("Include Lower case true");
-    }
+    // Filter what type password to concatinate
+    console.log("Password Length divided: " + passLength / 4);
 
+    if (includeLower && includeNumbers && includeSymbols && includeUpper) {
+        password += generateAlg((passLength / 4), lower);
+        console.log(password);
+        password += generateAlg((passLength / 4), numbers);
+        console.log(password);
+        password += generateAlg((passLength / 4), symbols);
+        console.log(password);
+        password += generateAlg((passLength / 4), upper);
+        console.log(password);
+        password = scramble(password);
+    }
+    // console.log("Scramble attempt: " + Math.random(password));
+
+    document.getElementById("output").innerHTML = password
+    // console.log("Include Symbols: " + includeSymbols);
+    // console.log("Include Numbers: " + includeNumbers);
+    // console.log("Include Upper: " + includeUpper);
+    // console.log("Include Lower: " + includeLower);
 }
 
    // Stores user input in global variable

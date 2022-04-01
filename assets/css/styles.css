@@ -39,7 +39,11 @@ button {
     border-width: 2px;
 }
 
-.generate:hover {
+#pref, #pass-length {
+    padding: 1em;
+}
+
+#generate:hover {
     border-color: rgb(0, 255, 0);
     color: rgb(0, 255, 0);
     box-shadow: 0 0 .5em rgb(0, 255, 0);
