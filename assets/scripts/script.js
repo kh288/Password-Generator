@@ -14,7 +14,7 @@ var buttonEL = document.querySelector("#generate");
 var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";//------------26.  0 - 26 
 var lower = "abcdefghijklmnopqrstuvwxyz";//------------26. 27 - 52
 var numbers = "0123456789"; //-------------------------10. 53 - 63
-var symbols = "!#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\""; //-32. 64 - 95
+var symbols = "!#$%&'()*+,-./:;\<=\>?@[\\]^_`{|}~\""; //-32. 64 - 95
 
 // Variables determined by the user
 var passLength = 0;     // Default to 0
