@@ -16,7 +16,6 @@
 // console.log("Total number of Password character combinations: " + (allLowerCaseLetters.length + allLowerCaseLetters.length + numbers.length + symbols.length));
 // console.log("List of all Characters: " + allLowerCaseLetters + allUpperLetters + numbers + symbols);
 
-
 // Would like to get this version to work instead
 // function getUserPasswordLength(input) {
 //     if (input >= 8 && input <= 128) {
@@ -37,7 +36,7 @@ var numbers = "0123456789"; //-------------------------10. 53 - 63
 var symbols = "!#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\""; //-32. 64 - 95
 
 // reference each "section" instead by their array locations, upper: 0 - 26. lower: 27 - 52. numbers, 53 - 63. Symbols: 64 - 95.
-var passCharArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&'()*+,-./:;<=>?@[\\]^_`{|}~\""
+// var passCharArr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!#$%&'\(\)*+,-./:;\<=\>?@[\\]^_`\{|\}~\""
 
 // Variables determined by the user
 var passLength = 0;     // Default to 0
@@ -137,12 +136,19 @@ function generatePassword(event) {
     // 1/3 of each if 1 isnt selected
     // 1/2 of each if 2 isnt selected
     // Take userPassLength, then divide into equal parts depending on preferences
+    var password = "";
+
+    // set variables back to defaults when ran again;
+    passLength = 0;
+    includeSymbols = false;
+    includeNumbers = false;
+    includeUpper   = false;
+    includeLower   = false;
 
     getUserPassPreference();    // Get user password preference and store them into global variables
     getUserPasswordLength();
     // event.preventDefault();
     
-    var password = "";
     // Check which preferences they have and generate accordingly.
 
     //includes all: 4ths
@@ -280,7 +286,6 @@ function generatePassword(event) {
         document.getElementById("output").innerHTML = password;
     }
 }
-
    // Stores user input in global variable
 
 buttonEL.addEventListener("click", generatePassword);

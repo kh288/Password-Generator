@@ -43,6 +43,11 @@ button {
     padding: 1em;
 }
 
+#output {
+    display: flex;
+    flex-wrap: wrap;
+}
+
 #generate:hover {
     border-color: rgb(0, 255, 0);
     color: rgb(0, 255, 0);
