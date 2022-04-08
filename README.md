@@ -11,4 +11,7 @@ This program is able to individually input 4 parameters and generate a password 
 
 ![](assets/images/snip.png)
 
+Here's the website, check it out! https://kh288.github.io/Password-Generator/
+<br>
+ 
 [LICENSE](/LICENSE.txt)
