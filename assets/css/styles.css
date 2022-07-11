@@ -11,9 +11,10 @@ h1 {
 }
 
 body {
-    width: 800px;
-    display: flex;
-    flex-direction: column;
+    max-width: 800px;
+    margin: auto;
+    /* display: flex;
+    flex-direction: column; */
 }
 
 header, section, #output{
