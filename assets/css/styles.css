@@ -59,8 +59,8 @@ p {
     background-color: rgb(33, 92, 44);
 }
 
-#output::selection {
-    user-select: all;
+#output {
+  user-select: all;
 }
 
 @media screen and (max-width: 800px) {
